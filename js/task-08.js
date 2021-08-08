@@ -19,7 +19,7 @@
 
 // <div id="boxes"></div>
 
- 
+  
 let render = document.querySelector('[data-action="render"]');
 let destroy = document.querySelector('[data-action="destroy"]');
 let boxes = document.getElementById('boxes');
@@ -30,3 +30,24 @@ function getAmount() {
   let amount = +document.querySelector('#controls input').value;
   createBoxes(amount);
 }
+
+function createBoxes(amount) {
+  let size = 30;
+  let fragment = document.createDocumentFragment();
+  for (let i = 0; i < amount; i++) {
+    let newSize = size + i * 10;
+    let div = document.createElement('div');
+    div.style.cssText = `width: ${newSize}px; height: ${newSize}px; background-color: rgba( ${random()} , ${random()} , ${random()} )`;
+    fragment.appendChild(div);
+  }
+  boxes.appendChild(fragment);
+}
+
+function destroyBoxes() {
+  boxes.innerHTML = '';
+}
+
+function random() {
+  return Math.floor(Math.random() * 256);
+}
+
